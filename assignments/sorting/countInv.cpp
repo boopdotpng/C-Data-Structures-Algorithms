@@ -11,36 +11,56 @@ https://www.youtube.com/watch?v=4IvYaOY8Pxw
 https://www.youtube.com/watch?v=I6ygiW8xN7Y
 
 
-*/ 
+*/
 #include <iostream>
 #include <vector>
 #include <algorithm> // For copy
 
-
-
-int mergeInv(std::vector<int>& nums, std::vector<int>& left, std::vector<int>& right) {
-// Your code here
-
-
+int mergeInv(std::vector<int> &nums, std::vector<int> &left, std::vector<int> &right)
+{
+    int i = 0, j = 0, k = 0;
+    int inversion_count = 0;
+    while (i < left.size() && j < right.size()) // go back and forth between left and right arrays
+    {
+        if (left[i] <= right[j]) // if left < right, no inversion has happened
+        {
+            nums[k++] = left[i++];
+        }
+        else // record inversions here
+        {
+            nums[k++] = right[j++];
+            inversion_count += left.size() - i;
+        }
+    }
+    // if there are still elements left in the array, we add them. all elements should be sorted
+    while (i < left.size())
+    {
+        nums[k++] = left[i++];
+    }
+    while (j < right.size())
+    {
+        nums[k++] = right[j++];
+    }
+    return inversion_count;
 }
 
-int countInv(std::vector<int>& nums) {
-	// Base case - one element, nothing to sort
+int countInv(std::vector<int> &nums)
+{
+    // Base case - one element, nothing to sort
 
-	if (nums.size() > 1) {
-		int mid = nums.size()/2;
-		std::vector<int> left(mid);
-		std::vector<int> right(nums.size()-mid);
-		std::copy(nums.begin(), nums.begin() + mid, left.begin());
-		std::copy(nums.begin() + mid, nums.end(), right.begin());
-		int numInvLeft = countInv(left);
-		int numInvRight = countInv(right);
-		int numInvMerge = mergeInv(nums, left, right);
-		return numInvLeft + numInvRight + numInvMerge;
-		
-	}
-	return 0;
-
+    if (nums.size() > 1)
+    {
+        int mid = nums.size() / 2;
+        std::vector<int> left(mid);
+        std::vector<int> right(nums.size() - mid);
+        std::copy(nums.begin(), nums.begin() + mid, left.begin());
+        std::copy(nums.begin() + mid, nums.end(), right.begin());
+        int numInvLeft = countInv(left);
+        int numInvRight = countInv(right);
+        int numInvMerge = mergeInv(nums, left, right);
+        return numInvLeft + numInvRight + numInvMerge;
+    }
+    return 0;
 }
 
 int main()
@@ -49,21 +69,17 @@ int main()
     std::vector<int> numvec{4, 5, 6, 1, 2, 3};
     n = countInv(numvec);
     std::cout << "Number of inversions " << n << std::endl; // Should be 9
-    
+
     numvec = {1, 2, 3, 4, 5, 6};
     n = countInv(numvec);
     std::cout << "Number of inversions " << n << std::endl; // Should be 0
-    
+
     numvec = {6, 5, 4, 3, 2, 1};
     n = countInv(numvec);
-    std::cout << "Number of inversions " << n << std::endl;  // Should be 15
-    
+    std::cout << "Number of inversions " << n << std::endl; // Should be 15
+
     numvec = {0, 0, 0, 0, 0, 0};
     n = countInv(numvec);
-    std::cout << "Number of inversions " << n << std::endl;;  // Should be 0
+    std::cout << "Number of inversions " << n << std::endl;
+    ; // Should be 0
 }
-
-
-
-
-
