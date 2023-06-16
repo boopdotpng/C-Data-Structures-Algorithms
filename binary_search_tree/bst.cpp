@@ -2,11 +2,10 @@
  * Implement the find() method for the BST which returns the value if the key is present, empty string otherwise.
  * Your implemntation can be either iterative or recursive.
 */
-
 #include <iostream>
 #include <string>
 
-class Node
+class Node // base definition of a node of the tree
 {
 private:
    int key;
@@ -68,7 +67,7 @@ std::string BinarySearchTree::find(int key) const {
 
    Node* search = root;
 
-   while (search != nullptr) // until you search through the whole tree
+   while (search != nullptr) // until no nodes remain
    {
       if (key < search->key)
       {
@@ -117,7 +116,7 @@ int main()
    t.insert(8, "Oxygen");
    t.printInOrder(); // Prints the keys in order (will appear sorted)
    int ele = 8;
-   std::string val = t.find(ele);
+   std::string val = t.find(ele); // parse the function output
    if (val == "" ) {
 	   std::cout << ele << " does not exist in tree" << std::endl;
    } else {
