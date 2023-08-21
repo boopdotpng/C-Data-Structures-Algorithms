@@ -1,8 +1,6 @@
 ## Binary Search Tree
-1. The code defines a Node class that represents a node in the BST. Each node has a key (integer) and a value (string), as well as left and right child pointers.
-2. The BinarySearchTree class is defined to manage the BST. It has a private member variable root that points to the root node of the tree.
-3. The insert method is used to insert a new node into the BST. It takes a key and value as parameters and recursively finds the correct position to insert the new node based on the key. If the key is less than the current node's key, it goes to the left subtree; otherwise, it goes to the right subtree.
-4. The printInOrder method performs an in-order traversal of the BST and prints the keys in ascending order.
-5. The find method searches for a node with a given key in the BST. It starts from the root and compares the key with the current node's key. If the key is less, it moves to the left subtree; if it is greater, it moves to the right subtree. It continues this process until the key is found or until it reaches a null node. If the key is found, it returns the corresponding value; otherwise, it returns an empty string.
-In the main function, a BinarySearchTree object t is created, and several nodes are inserted into it using the insert method. The printInOrder method is called to display the keys in order.
-6. The find method is used to search for a specific key (8 and 0) in the tree, and the corresponding value is printed based on whether the key is found or not.
+
+A binary search tree (BST) is a data structure where each node has a value and two child nodes: a left child with smaller values and a right child with larger values. The main property is that for any given node, all nodes in its left subtree have values less than the node's value, and all nodes in its right subtree have values greater.
+
+### Searching
+We can search values in the tree using the above property. If the value we're searching for is less than the root node value, then we search the left side of the tree. If it's greater, we search the right side of the tree. If we keep doing this, eventually we come across the key we're looking for.  

@@ -12,20 +12,20 @@ using namespace std;
 // function to check if paranthesis are balanced
 bool areParanthesisBalanced(string expr)
 {
-	stack<char> array;
+	stack<char> stack;
 	char current = (char) 0;
 
 	for(auto &ch : expr){
 		if (ch == '(' || ch == '[' || ch == '{'){
-			array.push(ch);
+			stack.push(ch);
 		}
 
 		else {
-			if (array.empty()){
+			if (stack.empty()){
 				return false;
 			}
-			current = array.top();
-			array.pop();
+			current = stack.top();
+			stack.pop();
 
 			if(current == '('){
 				if (ch != ')'){
@@ -44,7 +44,7 @@ bool areParanthesisBalanced(string expr)
 			}
 		}
 	}
-	if(!(array.empty())){
+	if(!(stack.empty())){
 			return false;
 		}
 		return true;
