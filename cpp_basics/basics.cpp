@@ -17,7 +17,6 @@ std::vector<double> vecProduct(const std::vector<double> &v1, const std::vector<
 	{
 		return std::vector<double>();
 	}
-	
 
 	std::vector<double> result = {};
 

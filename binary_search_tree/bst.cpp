@@ -10,8 +10,8 @@ class Node // base definition of a node of the tree
 private:
    int key;
    std::string val;
-   Node* left;
-   Node* right;
+   Node* left; // points to left node
+   Node* right; // points to right node
    friend class BinarySearchTree;
 };
 
